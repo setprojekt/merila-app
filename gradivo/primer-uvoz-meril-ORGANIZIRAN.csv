@@ -1,0 +1,11 @@
+Notranja številka,Ime merila,Vrsta merila,Lokacija,Frekvenca pregleda (leta),Datum zadnjega pregleda,Status,Odgovoren uporabnik
+MER-001,Merilna palica 1000mm,Merilna palica,Delavnica A,2,2024-01-15,USTREZA,admin@example.com
+MER-002,Merilni valjček 50mm,Merilni valjček,Delavnica B,1,2024-03-20,USTREZA,admin@example.com
+MER-003,Merilna tehtnica 500kg,Tehtnica,Magacin,2,2023-12-10,USTREZA,admin@example.com
+MER-004,Merilni kotnik 90°,Kotnik,Delavnica A,1,2024-02-05,USTREZA,admin@example.com
+MER-005,Merilna ravnilo 2000mm,Ravnilo,Delavnica B,2,2023-11-30,NE_USTREZA,admin@example.com
+MER-006,Merilni mikrometar 0-25mm,Mikrometar,Delavnica C,1,2024-04-10,USTREZA,admin@example.com
+MER-007,Merilna ura 0-10mm,Merilna ura,Delavnica A,2,2023-10-15,USTREZA,admin@example.com
+MER-008,Merilni ključ dinamometrični,Torzijski ključ,Delavnica B,1,2024-05-01,USTREZA,admin@example.com
+MER-009,Merilni nivo,Vodna libela,Delavnica C,2,2023-09-20,IZLOCENO,admin@example.com
+MER-010,Merilna črta 5m,Merilna črta,Magacin,1,2024-06-15,USTREZA,admin@example.com

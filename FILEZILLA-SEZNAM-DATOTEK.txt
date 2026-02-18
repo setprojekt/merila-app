@@ -1,0 +1,103 @@
+SEZNAM DATOTEK ZA PRENOS PREKO FILEZILLE
+=========================================
+
+✅ PRENESI VSE TE DATOTEKE IN MAPE:
+-----------------------------------
+
+MAPE (prenesi celotno strukturo):
+- app/
+- bootstrap/ (brez cache datotek)
+- config/
+- database/
+- lang/
+- public/ (brez build/, hot/, storage/)
+- resources/
+- routes/
+- storage/ (samo struktura map, brez vsebine)
+- tests/
+
+ROOT DATOTEKE:
+- artisan
+- composer.json
+- composer.lock
+- package.json
+- package-lock.json
+- vite.config.js
+- phpunit.xml
+- .editorconfig
+- .gitignore
+- .gitattributes
+- .env.example
+
+DODATNE DATOTEKE (če obstajajo):
+- create-admin-user.php
+- clear-and-import.php
+- delete-imported-instruments.php
+- import-set-csv.php
+- reset-import.php
+- install.ps1
+- optimize-local.ps1
+- optimize-production.ps1
+- optimize-production.sh
+- docker-compose.yml
+- deploy.sh
+
+DOKUMENTACIJA (opcijsko, vendar priporočeno):
+- README.md
+- DEPLOYMENT.md
+- DEPLOYMENT_CHECKLIST.md
+- FILEZILLA-PRENOS.md
+- MIGRACIJA-NA-UBUNTU-VM.md
+- AUTH_LOGIC.md
+- NAVODILA.md
+- in vse ostale .md datoteke
+
+GRAdivo (opcijsko):
+- gradivo/ (če želite prenesti tudi dokumentacijo in primere)
+
+❌ NE PRENESI TEH DATOTEK/MAP:
+------------------------------
+
+- vendor/ (se namesti z composer install)
+- node_modules/ (se namesti z npm install)
+- .git/ (če ne uporabljate git na strežniku)
+- .env (ustvarite na strežniku)
+- storage/logs/*.log
+- storage/framework/cache/*
+- storage/framework/sessions/*
+- storage/framework/views/*
+- bootstrap/cache/*.php (razen .gitignore)
+- public/build/
+- public/hot
+- public/storage
+- merila_db (lokalna baza, če obstaja)
+
+⚠️ POMEMBNO:
+-----------
+
+1. Storage mapa: Prenesi samo strukturo map, ne vsebine
+   - storage/app/
+   - storage/framework/cache/
+   - storage/framework/sessions/
+   - storage/framework/views/
+   - storage/logs/
+   (v vsaki mapi pustite .gitignore datoteko, če obstaja)
+
+2. Bootstrap cache: Prenesi samo .gitignore, ne cache datotek
+
+3. Public mapa: Prenesi vse RAZEN:
+   - build/ (se generira z npm run build)
+   - hot (development datoteka)
+   - storage/ (se ustvari z php artisan storage:link)
+
+4. Po prenosu na strežniku:
+   - composer install --no-dev --optimize-autoloader
+   - npm install
+   - npm run build
+   - cp .env.example .env
+   - php artisan key:generate
+   - php artisan storage:link
+   - Nastavi pravice: chmod -R 775 storage bootstrap/cache
+
+=========================================
+Za podrobna navodila glej: FILEZILLA-PRENOS.md

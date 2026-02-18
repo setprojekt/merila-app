@@ -1,0 +1,6 @@
+Notranja številka,Ime merila,Vrsta merila,Lokacija,Frekvenca pregleda (leta),Datum zadnjega pregleda,Status
+MER-201,Merilna palica 1000mm,Merilna palica,Delavnica A,2,15.01.2024,USTREZA
+MER-202,Merilni valjček 50mm,Merilni valjček,Delavnica B,1,20/03/2024,USTREZA
+MER-203,Merilna tehtnica 500kg,Tehtnica,Magacin,2,2024-12-10,USTREZA
+MER-204,Merilni kotnik 90°,Kotnik,Delavnica A,1,05.02.2024,USTREZA
+MER-205,Merilna ravnilo 2000mm,Ravnilo,Delavnica B,2,30/11/2023,NE_USTREZA

@@ -1,0 +1,80 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:  # Ročni zagon
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, mysql, redis, gd, zip, bcmath, intl
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+      
+      - name: Install NPM dependencies
+        run: npm ci
+      
+      - name: Build assets
+        run: npm run build
+      
+      - name: Deploy to server via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          source: "."
+          target: "/var/www/merila-app"
+          rm: false
+          strip_components: 0
+          exclude: |
+            vendor/
+            node_modules/
+            .git/
+            .env
+            storage/logs/*.log
+            storage/framework/cache/*
+            storage/framework/sessions/*
+            storage/framework/views/*
+            bootstrap/cache/*.php
+            public/build/
+            public/hot
+            public/storage
+            .github/
+            *.md
+            deploy*.ps1
+            deploy*.sh
+      
+      - name: Run deployment script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /var/www/merila-app
+            chmod +x deploy.sh
+            ./deploy.sh --no-git
+      
+      - name: Deployment success
+        run: echo "✅ Deployment completed successfully!"

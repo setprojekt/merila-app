@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Listeners;
+
+use Illuminate\Auth\Events\Login;
+
+class UpdateUserLastLogin
+{
+    /**
+     * Create the event listener.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     */
+    public function handle(Login $event): void
+    {
+        if ($event->user) {
+            $event->user->last_login_at = now();
+            $event->user->save();
+        }
+    }
+}
